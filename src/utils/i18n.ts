@@ -20,6 +20,6 @@ export function getLocale(headers: { "accept-language": string }): string {
 export function hasPathnameLocale(pathname: string): boolean {
   return supportedLocales.some(
     (locale) =>
-      pathname.includes(`/${locale}/`) || pathname.endsWith(`/${locale}`),
+      pathname.includes(`/${locale}/`) || pathname.startsWith(`/${locale}`),
   )
 }
