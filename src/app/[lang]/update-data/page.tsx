@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FormGenerator } from '@/components/FormGenerator';
 import { purchaseFormConfig } from '@/config/formConfig';
@@ -8,6 +8,7 @@ import { useRecaptcha } from '@/hooks/useRecaptcha';
 import { useCountries } from '@/hooks/useCountries';
 import { useUser } from '@/hooks/useUser';
 import { useAuthToken } from '@/hooks/useAuthToken';
+
 import { useTranslations } from '@/hooks/useTranslations';
 
 interface PurchaseData {
@@ -16,7 +17,7 @@ interface PurchaseData {
   address: string;
 }
 
-export default function PurchaseVerification() {
+function PurchaseVerificationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t } = useTranslations();
@@ -131,5 +132,13 @@ export default function PurchaseVerification() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function PurchaseVerification() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PurchaseVerificationContent />
+    </Suspense>
   );
 }

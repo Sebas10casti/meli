@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/Button';
 import { useTranslations } from '@/hooks/useTranslations';
 
+
 export default function StartTest() {
   const router = useRouter();
   const {t} = useTranslations();

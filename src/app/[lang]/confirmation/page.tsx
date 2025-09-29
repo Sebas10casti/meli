@@ -1,5 +1,14 @@
 import { getTranslations } from '@/app/translations/translate';
 
+// Generate static params for all supported languages
+export async function generateStaticParams() {
+  return [
+    { lang: 'en' },
+    { lang: 'es' },
+    { lang: 'pt' }
+  ];
+}
+
 export default async function PurchaseConfirmation({ params }: { params: { lang: string } }) {
   const { t } = await getTranslations(params.lang);
   return (
