@@ -1,18 +1,19 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { getUser } from '../userService'
 
 // Mock fetch
-global.fetch = jest.fn()
+global.fetch = vi.fn()
 
 describe('userService', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('fetches user data successfully', async () => {
     const mockUserData = { id: 1, name: 'John Doe' }
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockResolvedValueOnce({
       json: () => Promise.resolve(mockUserData)
-    })
+    } as Response)
 
     const result = await getUser({ userId: '123', headers: new Headers() })
 
@@ -27,7 +28,7 @@ describe('userService', () => {
   })
 
   it('handles fetch errors', async () => {
-    ;(global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'))
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockRejectedValueOnce(new Error('Network error'))
 
     await expect(getUser({ userId: '123', headers: new Headers() }))
       .rejects.toThrow('Network error')
@@ -35,9 +36,9 @@ describe('userService', () => {
 
   it('uses correct API endpoint', async () => {
     const mockUserData = { id: 1, name: 'John Doe' }
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockResolvedValueOnce({
       json: () => Promise.resolve(mockUserData)
-    })
+    } as Response)
 
     await getUser({ userId: '123', headers: new Headers() })
 

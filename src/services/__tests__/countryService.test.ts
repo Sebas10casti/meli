@@ -1,18 +1,19 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import getCountries from '../countryService'
 
 // Mock fetch
-global.fetch = jest.fn()
+global.fetch = vi.fn()
 
 describe('countryService', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
   })
 
   it('fetches countries data successfully', async () => {
     const mockCountriesData = { countries: [{ id: 'US', name: 'United States' }] }
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockResolvedValueOnce({
       json: () => Promise.resolve(mockCountriesData)
-    })
+    } as Response)
 
     const result = await getCountries(new Headers())
 
@@ -27,7 +28,7 @@ describe('countryService', () => {
   })
 
   it('handles fetch errors', async () => {
-    ;(global.fetch as jest.Mock).mockRejectedValueOnce(new Error('Network error'))
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockRejectedValueOnce(new Error('Network error'))
 
     await expect(getCountries(new Headers()))
       .rejects.toThrow('Network error')
@@ -35,9 +36,9 @@ describe('countryService', () => {
 
   it('uses correct API endpoint', async () => {
     const mockCountriesData = { countries: [] }
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockResolvedValueOnce({
       json: () => Promise.resolve(mockCountriesData)
-    })
+    } as Response)
 
     await getCountries(new Headers())
 

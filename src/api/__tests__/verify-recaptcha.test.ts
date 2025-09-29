@@ -1,17 +1,19 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest'
+
 // Mock fetch
-global.fetch = jest.fn()
+global.fetch = vi.fn()
 
 describe('/api/verify-recaptcha', () => {
   beforeEach(() => {
-    jest.clearAllMocks()
+    vi.clearAllMocks()
     process.env.RECAPTCHA_SECRET_KEY = 'test-secret-key'
   })
 
   it('should handle valid reCAPTCHA token', async () => {
     const mockResponse = { success: true, score: 0.9, action: 'purchase_verification' }
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockResolvedValueOnce({
       json: () => Promise.resolve(mockResponse)
-    })
+    } as Response)
 
     // Test the fetch call directly
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
@@ -26,9 +28,9 @@ describe('/api/verify-recaptcha', () => {
 
   it('should handle invalid reCAPTCHA token', async () => {
     const mockResponse = { success: false, 'error-codes': ['invalid-input-response'] }
-    ;(global.fetch as jest.Mock).mockResolvedValueOnce({
+    ;(global.fetch as vi.MockedFunction<typeof fetch>).mockResolvedValueOnce({
       json: () => Promise.resolve(mockResponse)
-    })
+    } as Response)
 
     const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
       method: 'POST',
