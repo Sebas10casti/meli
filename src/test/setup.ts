@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom'
 import { vi } from 'vitest'
 
 // Mock para i18next
@@ -31,29 +30,31 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-// Mock para localStorage
-Object.defineProperty(window, 'localStorage', {
-  value: {
-    getItem: vi.fn(),
-    setItem: vi.fn(),
-    removeItem: vi.fn(),
-    clear: vi.fn(),
-  },
-  writable: true,
-})
+// Mock para localStorage (solo en entorno de browser)
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'localStorage', {
+    value: {
+      getItem: vi.fn(),
+      setItem: vi.fn(),
+      removeItem: vi.fn(),
+      clear: vi.fn(),
+    },
+    writable: true,
+  })
 
-// Mock para window.location
-Object.defineProperty(window, 'location', {
-  value: {
-    pathname: '/es',
-    search: '',
-    hash: '',
-    host: 'localhost',
-    hostname: 'localhost',
-    href: 'http://localhost:3000/es',
-    origin: 'http://localhost:3000',
-    port: '3000',
-    protocol: 'http:',
-  },
-  writable: true,
-})
+  // Mock para window.location
+  Object.defineProperty(window, 'location', {
+    value: {
+      pathname: '/es',
+      search: '',
+      hash: '',
+      host: 'localhost',
+      hostname: 'localhost',
+      href: 'http://localhost:3000/es',
+      origin: 'http://localhost:3000',
+      port: '3000',
+      protocol: 'http:',
+    },
+    writable: true,
+  })
+}
