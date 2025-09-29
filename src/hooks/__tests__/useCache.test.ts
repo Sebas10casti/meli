@@ -28,22 +28,37 @@ describe('useCache', () => {
     mockFetchData.mockResolvedValue({ name: 'fresh data' })
   })
 
-  it('initializes with null when no cache', () => {
+  it('initializes with null when no cache', async () => {
     const { result } = renderHook(() => useCache(config))
     
     expect(result.current.data).toBeNull()
     expect(result.current.error).toBeNull()
+    
+    // Wait for async effects to complete
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 0))
+    })
   })
 
-  it('has setCachedData function', () => {
+  it('has setCachedData function', async () => {
     const { result } = renderHook(() => useCache(config))
     
     expect(typeof result.current.setCachedData).toBe('function')
+    
+    // Wait for async effects to complete
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 0))
+    })
   })
 
-  it('has clearCache function', () => {
+  it('has clearCache function', async () => {
     const { result } = renderHook(() => useCache(config))
     
     expect(typeof result.current.clearCache).toBe('function')
+    
+    // Wait for async effects to complete
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 0))
+    })
   })
 })

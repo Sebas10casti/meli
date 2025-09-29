@@ -9,8 +9,9 @@ export async function generateStaticParams() {
   ];
 }
 
-export default async function PurchaseConfirmation({ params }: { params: { lang: string } }) {
-  const { t } = await getTranslations(params.lang);
+export default async function PurchaseConfirmation({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  const { t } = await getTranslations(lang);
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
