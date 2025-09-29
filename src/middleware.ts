@@ -6,7 +6,14 @@ export async function middleware(request: NextRequest) {
   console.log("pathname", request.nextUrl.pathname);
 
   const hasLocal = hasPathnameLocale(pathname);
-  if (hasLocal) return;
+  if (hasLocal) {
+    // Si ya tiene locale, verificar si es la página principal y redirigir a start-test
+    if (pathname === `/${pathname.split('/')[1]}` || pathname === `/${pathname.split('/')[1]}/`) {
+      const locale = pathname.split('/')[1];
+      return NextResponse.redirect(new URL(`/${locale}/start-test`, request.url));
+    }
+    return;
+  }
 
   const locale = getLocale({
     "accept-language": request.headers.get("Accept-Language") || "",

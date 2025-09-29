@@ -1,0 +1,56 @@
+{
+    "start_test": {
+        "title": "Iniciar Teste",
+        "subtitle": "Esta página simula a etapa anterior no processo de compra.",
+        "start_purchase": "Iniciar Compra"
+    },
+    "update_information": {
+        "title": "Estamos quase lá... <br> atualize seus dados de contato",
+        "form": {
+            "fullname": "Nome Completo",
+            "country": "País",
+            "address": "Endereço",
+            "requiered_fullname": "Nome Completo é requerido",
+            "requiered_country": "País é requerido",
+            "requiered_address": "Endereço é requerido",
+            "placeholder_fullname": "Digite seu nome completo",
+            "placeholder_country": "Selecione seu país",
+            "placeholder_address": "Digite seu endereço",
+            "submit_button": "Próximo",
+            "cancel_button": "Voltar"
+        }
+    },
+    "inputs": {
+        "select_option": "Selecione uma opção",
+        "loading_options": "Carregando opções..."
+    },
+    "recaptcha": {
+        "title": "Verificação de Segurança",
+        "label": "Verifique que é humano",
+        "error": "Por favor, verifique que é humano",
+        "loading": "Verificando...",
+        "verified": "Verificado"
+    },
+    "validation": {
+        "required": "Este campo é requerido",
+        "min_length": "Deve ter no mínimo {min} caracteres",
+        "max_length": "Deve ter no máximo {max} caracteres",
+        "invalid": "Formato inválido"
+    },
+    "purchase_verification": {
+        "title": "Verificação de Compra",
+        "subtitle": "Por favor, revise e atualize suas informações antes de confirmar sua compra",
+        "fullname": "Nome Completo",
+        "country": "País",
+        "address": "Endereço",
+        "confirm_purchase": "Confirmar Compra",
+        "loading": "Processando...",
+        "success": "Compra confirmada com sucesso!",
+        "error": "Houve um erro ao processar sua compra. Por favor, tente novamente.",
+        "recaptcha_error": "Por favor, complete a verificação de segurança"
+    },
+    "purchase_confirmation": {
+        "title": "Compra Confirmada!",
+        "subtitle": "Sua compra foi processada com sucesso."
+    }
+}

@@ -1,7 +1,7 @@
 import { match } from "@formatjs/intl-localematcher"
 import Negotiator from "negotiator"
 
-export const supportedLocales = ["es", "en"]
+export const supportedLocales = ["es", "en", "pt"]
 export const defaultLocale = "es"
 
 /**
