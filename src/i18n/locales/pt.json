@@ -49,9 +49,8 @@
         "error": "Houve um erro ao processar sua compra. Por favor, tente novamente.",
         "recaptcha_error": "Por favor, complete a verificação de segurança"
     },
-    "purchase_confirmation": {
+    "confirmation": {
         "title": "Compra Confirmada!",
         "subtitle": "Sua compra foi processada com sucesso."
-    },
-    "language": "Idioma"
+    }
 }

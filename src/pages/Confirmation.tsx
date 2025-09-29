@@ -1,6 +1,6 @@
   import { useTranslation } from 'react-i18next';
 
-export default function PurchaseConfirmation() {
+export default function Confirmation() {
   const { t } = useTranslation();
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -13,10 +13,10 @@ export default function PurchaseConfirmation() {
               </svg>
             </div>
             <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              {t('purchase_confirmation.title')}
+              {t('confirmation.title')}
             </h1>
             <p className="text-gray-600 mb-6">
-              {t('purchase_confirmation.subtitle')}
+              {t('confirmation.subtitle')}
             </p>
           </div>
         </div>

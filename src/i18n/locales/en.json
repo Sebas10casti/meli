@@ -38,9 +38,8 @@
          "max_length": "Cannot exceed {max} characters",
          "invalid": "Invalid format"
      },
-    "purchase_confirmation": {
+    "confirmation": {
         "title": "Purchase Confirmed!",
         "subtitle": "Your purchase has been successfully processed."
-    },
-    "language": "Language"
+    }
 }

@@ -8,17 +8,17 @@ import { useCountries } from '../hooks/useCountries';
 import { useUser } from '../hooks/useUser';
 import { useAuthToken } from '../hooks/useAuthToken';
 
-interface PurchaseData {
+interface UpdateData {
   fullname: string;
   country: string;
   address: string;
 }
 
-function PurchaseVerificationContent() {
+function UpdateDataContent() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { t, i18n } = useTranslation();
-  const [formData, setFormData] = useState<PurchaseData>({
+  const [formData, setFormData] = useState<UpdateData>({
     fullname: '',
     country: '',
     address: ''
@@ -127,6 +127,6 @@ function PurchaseVerificationContent() {
   );
 }
 
-export default function PurchaseVerification() {
-  return <PurchaseVerificationContent />;
+export default function UpdateData() {
+  return <UpdateDataContent />;
 }
