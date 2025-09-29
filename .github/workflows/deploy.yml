@@ -2,11 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+    branches: [react]
 
 permissions:
   contents: write
@@ -14,45 +10,23 @@ permissions:
   id-token: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
-        run: |
-          npm install
-          npm rebuild
+        run: npm ci
 
-      - name: Run tests
-        run: npm test -- --passWithNoTests --coverage --watchAll=false
-        continue-on-error: true
-
-      - name: Run ESLint
-        run: npx eslint . --ext .js,.jsx,.ts,.tsx
-        continue-on-error: true
-
-      - name: Build the project
-        run: |
-          cp .github/postcss.config.mjs postcss.config.mjs
-          NODE_ENV=production npm run build:prod
-        env:
-          NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || 'test-key' }}
-          LIGHTNING_CSS_DISABLE_BUNDLE: 1
-
-      - name: Configure Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+      - name: Build
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
