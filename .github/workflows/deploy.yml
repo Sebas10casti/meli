@@ -27,8 +27,8 @@ jobs:
         node-version: '20'
         cache: 'npm'
 
-        - name: Install dependencies
-          run: npm install
+    - name: Install dependencies
+      run: npm install
 
     - name: Run tests
       run: npm test -- --passWithNoTests --coverage --watchAll=false
@@ -38,10 +38,10 @@ jobs:
       run: npx eslint . --ext .js,.jsx,.ts,.tsx
       continue-on-error: true
 
-        - name: Build the project
-          run: NODE_ENV=production npm run build
-          env:
-            NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || 'test-key' }}
+    - name: Build the project
+      run: NODE_ENV=production npm run build
+      env:
+        NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || 'test-key' }}
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
