@@ -1,0 +1,46 @@
+{
+    "start_test": {
+        "title": "Start Test",
+        "subtitle": "This page simulates the previous step in the purchase process.",
+        "start_purchase": "Start Purchase"
+    },
+    "update_information": {
+        "title": "We're almost there... <br> update your contact data",
+        "form": {
+            "fullname": "Full Name",
+            "country": "Country",
+            "address": "Address",
+            "requiered_fullname": "Full Name is required",
+            "requiered_country": "Country is required",
+            "requiered_address": "Address is required",
+            "placeholder_fullname": "Enter your full name",
+            "placeholder_country": "Select your country",
+            "placeholder_address": "Enter your address",
+            "submit_button": "Next",
+            "cancel_button": "Back"
+        }
+        
+    },
+     "inputs": {
+         "select_option": "Select an option",
+         "loading_options": "Loading options..."
+     },
+     "recaptcha": {
+         "title": "Security Verification",
+         "label": "Verify that you are human",
+         "error": "Please verify that you are human",
+         "loading": "Verifying...",
+         "verified": "Verified"
+     },
+     "validation": {
+         "required": "This field is required",
+         "min_length": "Must be at least {min} characters",
+         "max_length": "Cannot exceed {max} characters",
+         "invalid": "Invalid format"
+     },
+    "purchase_confirmation": {
+        "title": "Purchase Confirmed!",
+        "subtitle": "Your purchase has been successfully processed."
+    },
+    "language": "Language"
+}

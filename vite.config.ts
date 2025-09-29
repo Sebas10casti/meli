@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: '/meli/',
+export default defineConfig(({ command }) => ({
+  plugins: [react(), tailwindcss(),],
+  base: command === 'build' ? '/meli/' : '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -18,4 +18,4 @@ export default defineConfig({
     }
   },
   publicDir: 'public',
-})
+}))
