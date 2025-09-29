@@ -46,7 +46,7 @@ export function useRecaptcha(): UseRecaptchaReturn {
         setError(data.error || 'reCAPTCHA verification failed');
         setIsVerified(false);
       }
-    } catch (err) {
+    } catch {
       setError('Network error during verification');
       setIsVerified(false);
     } finally {

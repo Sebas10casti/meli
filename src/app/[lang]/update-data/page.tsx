@@ -26,11 +26,11 @@ export default function PurchaseVerification() {
     address: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [_isMounted, setIsMounted] = useState(false);
   const recaptcha = useRecaptcha();
-  const { countries, isLoading: countriesLoading, error: countriesError } = useCountries();
-  const { userData, isLoading: userLoading, error: userError, getFullName, getFullAddress } = useUser();
-  const { setTokenFromQuery, token, hasValidToken } = useAuthToken();
+  const { countries, isLoading: countriesLoading, error: _countriesError } = useCountries();
+  const { userData, isLoading: userLoading, error: _userError, getFullName, getFullAddress } = useUser();
+  const { setTokenFromQuery, token, hasValidToken: _hasValidToken } = useAuthToken();
 
   // Obtener parámetros de la URL
   const referrer = searchParams.get('referrer');

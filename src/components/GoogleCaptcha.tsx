@@ -57,7 +57,7 @@ export function GoogleCaptcha({ onVerify, onError, isVerified = false, isLoading
         { action: 'purchase_verification' }
       );
       onVerify(token);
-    } catch (error) {
+    } catch {
       onError?.('reCAPTCHA verification failed');
     }
   }, [isLoaded, onVerify, onError]);

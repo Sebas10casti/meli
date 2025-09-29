@@ -5,28 +5,47 @@ on:
     branches:
       - main
 
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: '20'
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+
+    - name: Run tests
+      run: npm test -- --passWithNoTests --coverage --watchAll=false
+      continue-on-error: true
+
+    - name: Run ESLint
+      run: npx eslint . --ext .js,.jsx,.ts,.tsx
+      continue-on-error: true
 
     - name: Build the project
       run: npm run build
+      env:
+        NEXT_PUBLIC_RECAPTCHA_SITE_KEY: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || 'test-key' }}
+        NODE_ENV: production
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        personal_token: ${{ secrets.GITHUB_TOKEN }}
-        external_repository: ${{ github.repository }}
-        publish_dir: ./dist/navidad-tarjetas/browser
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out

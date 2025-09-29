@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dictionaries: Record<string, () => Promise<Record<string, any>>> = {
   es: () => import("./es.json").then((module) => module.default),
   en: () => import("./en.json").then((module) => module.default),
@@ -8,7 +7,6 @@ const dictionaries: Record<string, () => Promise<Record<string, any>>> = {
 export async function getTranslations(locale: string) {
   const dictionary = await dictionaries[locale]()
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const t = (key: string, defaultValue = ""): any => {
     const keys = key.split('.');
     let value: any = dictionary;
