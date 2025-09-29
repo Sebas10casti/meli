@@ -12,6 +12,23 @@
   </head>
   <body>
     <div id="root"><!--app-html--></div>
+    
+    <!-- No-script fallback content -->
+    <noscript>
+      <div style="min-height: 100vh; background-color: #f3f4f6; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; padding: 1rem;">
+        <div style="max-width: 500px; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
+          <h1 style="color: #333; margin-bottom: 1rem;">JavaScript requerido</h1>
+          <p style="color: #666; margin-bottom: 2rem;">
+            Esta aplicación necesita JavaScript para funcionar. Por favor, habilita JavaScript en tu navegador.
+          </p>
+          <a href="https://www.mercadolibre.com/" 
+             style="display: inline-block; padding: 12px 24px; background: #3483fa; color: white; text-decoration: none; border-radius: 4px;">
+            Ir a Mercado Libre
+          </a>
+        </div>
+      </div>
+    </noscript>
+    
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
