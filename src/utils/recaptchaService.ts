@@ -10,7 +10,7 @@ export const verifyRecaptcha = async (token: string): Promise<{
 }> => {
   try {
     // ===== SIMULACIÓN (ACTUALMENTE ACTIVA) =====
-    console.log('🔧 Simulando verificación de reCAPTCHA');
+    console.log(token);
     await new Promise(resolve => setTimeout(resolve, 800)); // Simular delay
     
     // Simular diferentes scores para hacerlo más realista
