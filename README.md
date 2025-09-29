@@ -4,7 +4,7 @@ Una aplicación React moderna para la verificación de datos de usuario en el pr
 
 ## 🚀 Demo en Vivo
 
-**🌐 [Ver aplicación en GitHub Pages](https://sebas10casti.github.io/meli)**
+**🌐 [Ver aplicación en GitHub Pages](https://sebas10casti.github.io)**
 
 ## 📋 Descripción del Proyecto
 
@@ -170,7 +170,7 @@ npm run build
 
 ### **Configuración de Routing**
 - **Desarrollo**: `http://localhost:5173/es`
-- **Producción**: `https://sebas10casti.github.io/meli/es`
+- **Producción**: `https://sebas10casti.github.io/es`
 - **Basename dinámico** según el entorno
 - **Redirecciones automáticas** para SEO
 

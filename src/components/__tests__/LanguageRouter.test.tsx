@@ -61,7 +61,7 @@ describe('LanguageRouter Component', () => {
 
   it('handles production path detection', () => {
     // Test production path detection logic
-    const segments = '/meli/es'.split('/').filter(Boolean)
+    const segments = '/es'.split('/').filter(Boolean)
     const supportedLanguages = ['es', 'en', 'pt']
     const detectedLang = segments.length > 1 && segments[0] === 'meli' && supportedLanguages.includes(segments[1]) ? segments[1] : null
     

@@ -12,17 +12,15 @@ const resources = {
 };
 
 const getLanguageFromURL = (): string => {
+  // Check if we're in browser environment
+  if (typeof window === 'undefined') {
+    return DEFAULT_LANGUAGE;
+  }
+
   const segments = window.location.pathname.split('/').filter(Boolean);
   let lang = segments[0];
 
-  if (
-    segments.length > 1 &&
-    segments[0] === 'meli' &&
-    SUPPORTED_LANGUAGES.includes(segments[1] as any)
-  ) {
-    lang = segments[1];
-  }
-
+  // Detectar idioma desde la URL: /es, /en, /pt, etc.
   if (SUPPORTED_LANGUAGES.includes(lang as any)) return lang;
 
   const storedLang = localStorage.getItem('i18nextLng');
@@ -33,21 +31,15 @@ const getLanguageFromURL = (): string => {
 };
 
 export const changeLanguage = (lng: string) => {
-  const segments = window.location.pathname.split('/').filter(Boolean);
-  const isProd = segments[0] === 'meli';
+  if (typeof window === 'undefined') return;
 
-  if (isProd) {
-    if (segments.length > 1 && SUPPORTED_LANGUAGES.includes(segments[1] as any)) {
-      segments[1] = lng;
-    } else {
-      segments.push(lng);
-    }
+  const segments = window.location.pathname.split('/').filter(Boolean);
+
+  // Cambiar idioma en la URL: /es, /en, /pt, etc.
+  if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0] as any)) {
+    segments[0] = lng;
   } else {
-    if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0] as any)) {
-      segments[0] = lng;
-    } else {
-      segments.unshift(lng);
-    }
+    segments.unshift(lng);
   }
 
   window.history.pushState({}, '', '/' + segments.join('/'));

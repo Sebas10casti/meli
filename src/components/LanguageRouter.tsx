@@ -1,11 +1,22 @@
 import { useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Header from './Header';
 import App from '../App';
 import StartTest from '../pages/StartTest';
 import UpdateData from '../pages/UpdateData';
 import Confirmation from '../pages/Confirmation';
 import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '../config/languages';
+
+// Componente para manejar redirecciones en el servidor
+const ServerRedirect = ({ to }: { to: string }) => {
+  // En el servidor, no renderizamos nada, la redirección se maneja en entry-server
+  if (typeof window === 'undefined') {
+    return null;
+  }
+  // En el cliente, usamos Navigate normalmente
+  return <Navigate to={to} replace />;
+};
 
 
 const APP_ROUTES = [
@@ -25,13 +36,9 @@ const LanguageRouter = () => {
     
     let detectedLang = null;
     
-    // En desarrollo: /es, /en, /pt, etc.
+    // Detectar idioma desde la URL: /es, /en, /pt, etc.
     if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0] as any)) {
       detectedLang = segments[0];
-    }
-    // En producción: /meli/es, /meli/en, /meli/pt, etc.
-    else if (segments.length > 1 && segments[0] === 'meli' && SUPPORTED_LANGUAGES.includes(segments[1] as any)) {
-      detectedLang = segments[1];
     }
     
     if (detectedLang && i18n.language !== detectedLang) {
@@ -56,16 +63,19 @@ const LanguageRouter = () => {
   };
 
   return (
-    <Routes>
-      {/* Redirigir / a idioma por defecto */}
-      <Route path="/" element={<Navigate to={`/${DEFAULT_LANGUAGE}`} replace />} />
-      
-      {/* Generar rutas dinámicamente para todos los idiomas */}
-      {generateLanguageRoutes()}
-      
-      {/* Redirigir cualquier otra ruta al idioma por defecto */}
-      <Route path="*" element={<Navigate to={`/${DEFAULT_LANGUAGE}`} replace />} />
-    </Routes>
+    <div>
+      <Header />
+      <Routes>
+        {/* Redirigir / a idioma por defecto */}
+        <Route path="/" element={<ServerRedirect to={`/${DEFAULT_LANGUAGE}`} />} />
+        
+        {/* Generar rutas dinámicamente para todos los idiomas */}
+        {generateLanguageRoutes()}
+        
+        {/* Redirigir cualquier otra ruta al idioma por defecto */}
+        <Route path="*" element={<ServerRedirect to={`/${DEFAULT_LANGUAGE}`} />} />
+      </Routes>
+    </div>
   );
 };
 
