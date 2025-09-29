@@ -1,6 +1,6 @@
 /**
  * Servicio para verificar reCAPTCHA
- * En un entorno real, esto debería ser un endpoint de tu backend
+ * Actualmente usando simulación - cambiar a backend real cuando esté listo
  */
 export const verifyRecaptcha = async (token: string): Promise<{
   success: boolean;
@@ -9,19 +9,21 @@ export const verifyRecaptcha = async (token: string): Promise<{
   error?: string;
 }> => {
   try {
-    // En desarrollo, simular verificación exitosa
-    if (import.meta.env.DEV) {
-      console.log('🔧 Modo desarrollo: Simulando verificación de reCAPTCHA');
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simular delay
-      return {
-        success: true,
-        score: 0.9,
-        action: 'purchase_verification'
-      };
-    }
+    // ===== SIMULACIÓN (ACTUALMENTE ACTIVA) =====
+    console.log('🔧 Simulando verificación de reCAPTCHA');
+    await new Promise(resolve => setTimeout(resolve, 800)); // Simular delay
+    
+    // Simular diferentes scores para hacerlo más realista
+    const score = Math.random() > 0.1 ? 0.8 + Math.random() * 0.2 : 0.3 + Math.random() * 0.4;
+    
+    return {
+      success: true,
+      score: Math.round(score * 100) / 100,
+      action: 'purchase_verification'
+    };
 
-    // En producción, usar tu endpoint real
-    // NOTA: Reemplaza esta URL con tu endpoint real de backend
+    // ===== CÓDIGO FUNCIONAL CON BACKEND REAL (COMENTADO) =====
+    /*
     const response = await fetch('https://tu-backend.com/api/verify-recaptcha', {
       method: 'POST',
       headers: {
@@ -35,6 +37,7 @@ export const verifyRecaptcha = async (token: string): Promise<{
     }
 
     return await response.json();
+    */
   } catch (error) {
     console.error('Error verificando reCAPTCHA:', error);
     return {
