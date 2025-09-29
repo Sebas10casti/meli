@@ -9,9 +9,6 @@ const nextConfig: NextConfig = {
       unoptimized: true
     },
   }),
-  // Configuración para GitHub Pages
-  basePath: process.env.NODE_ENV === 'production' ? '/Meli' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Meli' : '',
 };
 
 export default nextConfig;
