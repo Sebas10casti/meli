@@ -5,4 +5,17 @@ import react from '@vitejs/plugin-react-swc'
 export default defineConfig({
   plugins: [react()],
   base: '/meli/',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      }
+    }
+  },
+  publicDir: 'public',
 })
