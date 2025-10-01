@@ -25,11 +25,13 @@ const LanguageRouter = () => {
     
     let detectedLang = null;
     
-    // Detectar idioma desde la URL (funciona tanto en desarrollo como producción)
     // En desarrollo: /es, /en, /pt, etc.
-    // En producción con basename: /en, /pt, etc. (después del basename /meli)
     if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0] as any)) {
       detectedLang = segments[0];
+    }
+    // En producción: /meli/es, /meli/en, /meli/pt, etc.
+    else if (segments.length > 1 && segments[0] === 'meli' && SUPPORTED_LANGUAGES.includes(segments[1] as any)) {
+      detectedLang = segments[1];
     }
     
     if (detectedLang && i18n.language !== detectedLang) {
