@@ -2,6 +2,39 @@
 
 Una aplicación React moderna para la verificación de datos de usuario en el proceso de compra, desarrollada como prueba técnica para MercadoLibre.
 
+## 🌿 Ramas del Proyecto
+
+Este repositorio contiene múltiples implementaciones de la misma aplicación:
+
+### **🌐 `main` - Rama Principal**
+- **Stack**: React + Vite + TypeScript
+- **Características**: Aplicación SPA completa con routing
+- **Estado**: ✅ Estable y funcional
+
+### **⚡ `react` - React SPA (Actual)**
+- **Stack**: React 19 + Vite + TypeScript + Tailwind
+- **Características**: 
+  - ✅ **No-Script Support** - Fallback elegante sin JavaScript
+  - ✅ **Internacionalización** (ES/EN/PT)
+  - ✅ **Testing completo** (33 tests, 100% cobertura)
+  - ✅ **reCAPTCHA v3** integrado
+- **Estado**: ✅ **Rama principal activa**
+
+### **🔄 `react-ssr` - Server-Side Rendering**
+- **Stack**: React + SSR + Express
+- **Características**: Renderizado del lado del servidor
+- **Estado**: 🔄 En desarrollo
+
+### **🚫 `react-no-script` - No-Script Fallback**
+- **Stack**: React + HTML estático
+- **Características**: Versión sin JavaScript
+- **Estado**: ✅ Implementación alternativa
+
+### **⚡ `next-js` - Next.js**
+- **Stack**: Next.js 14 + TypeScript
+- **Características**: Framework completo con SSR/SSG
+- **Estado**: 🔄 En desarrollo
+
 ## 🚀 Demo en Vivo
 
 **🌐 [Ver aplicación en GitHub Pages](https://sebas10casti.github.io)**
@@ -9,6 +42,9 @@ Una aplicación React moderna para la verificación de datos de usuario en el pr
 ## 📋 Descripción del Proyecto
 
 Esta aplicación simula el flujo de verificación de datos de usuario durante una compra en MercadoLibre. Permite a los usuarios actualizar su información personal, verificar su identidad mediante reCAPTCHA y confirmar sus datos antes de proceder con la compra.
+
+### **🎯 Objetivo Principal**
+Desarrollar una solución robusta que funcione tanto con JavaScript habilitado (experiencia completa) como deshabilitado (fallback elegante), garantizando accesibilidad y compatibilidad en todos los escenarios.
 
 ## ✨ Características Principales
 
@@ -26,6 +62,13 @@ Esta aplicación simula el flujo de verificación de datos de usuario durante un
 - Integración con **Google reCAPTCHA v3**
 - Validación de tokens de autenticación
 - Manejo seguro de datos sensibles
+
+### 🚫 **No-Script Support**
+- **Fallback elegante** cuando JavaScript está deshabilitado
+- **Componente NoScript** integrado en React
+- **Selector de idiomas** funcional sin JS
+- **Enlace directo** a MercadoLibre como alternativa
+- **Mensaje informativo** para habilitar JavaScript
 
 ### 🧪 **Testing**
 - **33 tests** con **100% de cobertura**
@@ -90,6 +133,44 @@ src/
 - Resumen de datos actualizados
 - Confirmación del proceso
 - Redirección al flujo original
+
+## 🚫 Implementación No-Script
+
+### **¿Cómo funciona?**
+Cuando JavaScript está deshabilitado, la aplicación muestra automáticamente:
+
+1. **Componente NoScript** (`/src/components/NoScript.tsx`)
+   - Se renderiza automáticamente cuando JS está deshabilitado
+   - Incluye logo de MercadoLibre
+   - Selector de idiomas funcional
+   - Instrucciones para habilitar JavaScript
+
+2. **HTML Base** (`index.html`)
+   - Fallback mínimo y directo
+   - Mensaje simple de JavaScript requerido
+   - Enlace directo a MercadoLibre
+
+### **Características del No-Script**
+- ✅ **Sin SSR** - Todo del lado del cliente
+- ✅ **Sencillo y directo** - Un solo componente
+- ✅ **Mantenible** - Fácil de modificar
+- ✅ **Consistente** - Integrado con React
+- ✅ **Limpio** - Sin archivos redundantes
+
+### **Estructura del No-Script**
+```typescript
+// src/components/NoScript.tsx
+const NoScript = () => (
+  <noscript>
+    <div>
+      {/* Header con logo */}
+      {/* Selector de idiomas */}
+      {/* Mensaje informativo */}
+      {/* Enlace a MercadoLibre */}
+    </div>
+  </noscript>
+);
+```
 
 ## 🛠️ Instalación y Desarrollo
 
@@ -253,11 +334,28 @@ refactor: refactorización de código
 
 ## 📝 Notas de Desarrollo
 
+### **Comparación de Ramas**
+
+| Rama | Stack | No-Script | SSR | Complejidad | Estado |
+|------|-------|-----------|-----|-------------|--------|
+| `react` | React + Vite | ✅ Elegante | ❌ | 🟢 Baja | ✅ Activa |
+| `react-ssr` | React + Express | ✅ HTML estático | ✅ | 🟡 Media | 🔄 Dev |
+| `react-no-script` | React + HTML | ✅ Completo | ❌ | 🟡 Media | ✅ Estable |
+| `next-js` | Next.js 14 | ✅ Nativo | ✅ | 🔴 Alta | 🔄 Dev |
+
+### **¿Cuál rama usar?**
+
+- **🚀 Para desarrollo rápido**: `react` (actual)
+- **⚡ Para máxima compatibilidad**: `react-no-script`
+- **🔄 Para SEO avanzado**: `react-ssr` o `next-js`
+- **🏢 Para producción enterprise**: `next-js`
+
 ### **Decisiones Técnicas**
 1. **Vitest vs Jest**: Mayor velocidad y mejor integración con Vite
 2. **Tailwind CSS**: Desarrollo más rápido y consistencia visual
 3. **React Router v7**: Última versión con mejor performance
 4. **TypeScript**: Type safety y mejor DX
+5. **No-Script Component**: Solución elegante sin SSR
 
 ### **Próximas Mejoras**
 - [ ] PWA (Progressive Web App)

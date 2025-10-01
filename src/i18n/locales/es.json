@@ -38,7 +38,7 @@
          "invalid": "Formato inválido"
      },
     "confirmation": {
-        "title": "¡Compra Confirmada!",
-        "subtitle": "Tu compra ha sido procesada exitosamente."
+        "title": "Información actualizada!",
+        "subtitle": "Tus datos han sido actualizados exitosamente."
     }
 }
