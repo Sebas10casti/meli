@@ -3,6 +3,14 @@ import { useTranslation } from 'react-i18next';
 import Button from './Button';
 import { environment } from '../config/environments';
 
+/**
+ * Props for the GoogleCaptcha component.
+ * @typedef {Object} GoogleCaptchaProps
+ * @property {(token: string | null) => void} onVerify - Callback fired when the captcha is successfully verified.
+ * @property {(error: string) => void} [onError] - Optional callback fired when an error occurs.
+ * @property {boolean} [isVerified] - Optional flag indicating if the captcha has already been verified.
+ * @property {boolean} [isLoading] - Optional flag indicating if the verification is in progress.
+ */
 interface GoogleCaptchaProps {
   onVerify: (token: string | null) => void;
   onError?: (error: string) => void;
@@ -12,13 +20,34 @@ interface GoogleCaptchaProps {
 
 declare global {
   interface Window {
+    /**
+     * Google reCAPTCHA object injected by the reCAPTCHA script.
+     */
     grecaptcha?: {
+      /**
+       * Executes the reCAPTCHA verification.
+       * @param {string} siteKey - The site key for reCAPTCHA.
+       * @param {{ action: string }} options - Options for the execution, including the action.
+       * @returns {Promise<string>} - A promise that resolves to the verification token.
+       */
       execute: (siteKey: string, options: { action: string }) => Promise<string>;
+      /**
+       * Registers a callback to be executed when reCAPTCHA is ready.
+       * @param {() => void} callback - The callback function.
+       */
       ready: (callback: () => void) => void;
     };
   }
 }
 
+/**
+ * GoogleCaptcha React component for integrating Google reCAPTCHA v3.
+ *
+ * Loads the reCAPTCHA script, handles verification, and displays status.
+ *
+ * @param {GoogleCaptchaProps} props - The props for the component.
+ * @returns {JSX.Element} The rendered GoogleCaptcha component.
+ */
 export function GoogleCaptcha({
   onVerify,
   onError,
@@ -30,7 +59,10 @@ export function GoogleCaptcha({
   const scriptAddedRef = useRef(false);
   const { t } = useTranslation();
 
-  // Cargar script de reCAPTCHA solo una vez
+  /**
+   * Loads the reCAPTCHA script only once when the component mounts.
+   * Sets the loaded state or error state accordingly.
+   */
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -65,14 +97,16 @@ export function GoogleCaptcha({
 
     document.head.appendChild(script);
 
-    // Limpieza: eliminar el script si el componente se desmonta
     return () => {
       script.remove();
     };
     // eslint-disable-next-line
   }, [onError]);
 
-  // Función para ejecutar reCAPTCHA
+  /**
+   * Executes the reCAPTCHA verification and calls the onVerify callback with the token.
+   * Calls onError if verification fails or reCAPTCHA is not loaded.
+   */
   const executeRecaptcha = useCallback(async () => {
     if (!isLoaded || !window.grecaptcha) {
       onError?.('reCAPTCHA not loaded');

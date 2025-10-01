@@ -1,6 +1,5 @@
 import { vi } from 'vitest'
 
-// Mock para i18next
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string) => key,
@@ -15,7 +14,6 @@ vi.mock('react-i18next', () => ({
   },
 }))
 
-// Mock para react-router-dom
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom')
   return {
@@ -30,7 +28,6 @@ vi.mock('react-router-dom', async () => {
   }
 })
 
-// Mock para localStorage (solo en entorno de browser)
 if (typeof window !== 'undefined') {
   Object.defineProperty(window, 'localStorage', {
     value: {
@@ -42,7 +39,6 @@ if (typeof window !== 'undefined') {
     writable: true,
   })
 
-  // Mock para window.location
   Object.defineProperty(window, 'location', {
     value: {
       pathname: '/es',

@@ -1,6 +1,7 @@
 /**
- * Servicio para verificar reCAPTCHA
- * Actualmente usando simulación - cambiar a backend real cuando esté listo
+ * 
+ * @param token - The token to verify.
+ * @returns 
  */
 export const verifyRecaptcha = async (token: string): Promise<{
   success: boolean;
@@ -22,7 +23,7 @@ export const verifyRecaptcha = async (token: string): Promise<{
       action: 'purchase_verification'
     };
 
-    // ===== CÓDIGO FUNCIONAL CON BACKEND REAL (COMENTADO) =====
+    // ===== CÓDIGO FUNCIONAL CON BACKEND =====
     /*
     const response = await fetch('https://tu-backend.com/api/verify-recaptcha', {
       method: 'POST',

@@ -43,7 +43,6 @@ export const useCountries = () => {
   const { getAuthHeaders, hasValidToken } = useAuthToken();
   
   const fetchCountriesData = async (): Promise<Country[]> => {
-    // Use environment configuration to determine data source
     if (!environment.useMockData && hasValidToken()) {
       try {
         const headers = getAuthHeaders();
@@ -57,12 +56,10 @@ export const useCountries = () => {
         return data.countries || [];
       } catch (error) {
         console.error('Error fetching countries from API, falling back to mock:', error);
-        // Fall back to mock data if API fails
         return fetchMockCountries();
       }
     }
     
-    // Use mock data if configured to do so or if no valid token
     return fetchMockCountries();
   };
 

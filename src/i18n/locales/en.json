@@ -39,7 +39,7 @@
          "invalid": "Invalid format"
      },
     "confirmation": {
-        "title": "Purchase Confirmed!",
-        "subtitle": "Your purchase has been successfully processed."
+        "title": "Information updated!",
+        "subtitle": "Your information has been updated successfully."
     }
 }
