@@ -1,7 +1,10 @@
+import LanguageSelector from './LanguageSelector';
+
 const headerStyle = {
   backgroundColor: "#ffe600",
   display: "flex",
   alignItems: "center",
+  justifyContent: "space-between",
   padding: "12px 24px",
   boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
 };
@@ -21,6 +24,7 @@ const Header = () => {
           style={logoStyle}
         />
       </a>
+      <LanguageSelector />
     </header>
   );
 }
