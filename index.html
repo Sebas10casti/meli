@@ -10,51 +10,9 @@
     <title>Meli - SC - React App</title>
     <!--app-head-->
     
-    <!-- GitHub Pages SPA redirect script -->
-    <script>
-      // Single Page Apps for GitHub Pages
-      // MIT License
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current URL and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new URL with only a query string and hash fragment,
-      // e.g. https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
-      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
-      // Note: this 404.html page must be saved as UTF-8 or it won't work
-      // This script only works on v2 of GitHub Pages (not v1)
-      // You can test it locally by running `python -m SimpleHTTPServer 8000`
-      // and then going to http://localhost:8000/your-repo-name/one/two?a=b&c=d#qwe
-      // You should see the redirect happen in your browser's network tab.
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
-    </script>
   </head>
   <body>
-    <div id="root"><!--app-html--></div>
-    
-    <!-- No-script fallback content -->
-    <noscript>
-      <div style="min-height: 100vh; background-color: #f3f4f6; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; padding: 1rem;">
-        <div style="max-width: 500px; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
-          <h1 style="color: #333; margin-bottom: 1rem;">JavaScript requerido</h1>
-          <p style="color: #666; margin-bottom: 2rem;">
-            Esta aplicación necesita JavaScript para funcionar. Por favor, habilita JavaScript en tu navegador.
-          </p>
-          <a href="https://www.mercadolibre.com/" 
-             style="display: inline-block; padding: 12px 24px; background: #3483fa; color: white; text-decoration: none; border-radius: 4px;">
-            Ir a Mercado Libre
-          </a>
-        </div>
-      </div>
-    </noscript>
-    
+    <div id="root"></div>  
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
