@@ -15,14 +15,8 @@ const getLanguageFromURL = (): string => {
   const segments = window.location.pathname.split('/').filter(Boolean);
   let lang = segments[0];
 
-  if (
-    segments.length > 1 &&
-    segments[0] === 'meli' &&
-    SUPPORTED_LANGUAGES.includes(segments[1] as any)
-  ) {
-    lang = segments[1];
-  }
-
+  // En producción, el basename ya está manejado por React Router
+  // Entonces los segmentos son directamente el idioma
   if (SUPPORTED_LANGUAGES.includes(lang as any)) return lang;
 
   const storedLang = localStorage.getItem('i18nextLng');
@@ -34,20 +28,12 @@ const getLanguageFromURL = (): string => {
 
 export const changeLanguage = (lng: string) => {
   const segments = window.location.pathname.split('/').filter(Boolean);
-  const isProd = segments[0] === 'meli';
-
-  if (isProd) {
-    if (segments.length > 1 && SUPPORTED_LANGUAGES.includes(segments[1] as any)) {
-      segments[1] = lng;
-    } else {
-      segments.push(lng);
-    }
+  
+  // Reemplazar el primer segmento con el nuevo idioma
+  if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0] as any)) {
+    segments[0] = lng;
   } else {
-    if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0] as any)) {
-      segments[0] = lng;
-    } else {
-      segments.unshift(lng);
-    }
+    segments.unshift(lng);
   }
 
   window.history.pushState({}, '', '/' + segments.join('/'));
