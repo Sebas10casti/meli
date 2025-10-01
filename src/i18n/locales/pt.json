@@ -37,20 +37,8 @@
         "max_length": "Deve ter no máximo {max} caracteres",
         "invalid": "Formato inválido"
     },
-    "purchase_verification": {
-        "title": "Verificação de Compra",
-        "subtitle": "Por favor, revise e atualize suas informações antes de confirmar sua compra",
-        "fullname": "Nome Completo",
-        "country": "País",
-        "address": "Endereço",
-        "confirm_purchase": "Confirmar Compra",
-        "loading": "Processando...",
-        "success": "Compra confirmada com sucesso!",
-        "error": "Houve um erro ao processar sua compra. Por favor, tente novamente.",
-        "recaptcha_error": "Por favor, complete a verificação de segurança"
-    },
     "confirmation": {
-        "title": "Compra Confirmada!",
-        "subtitle": "Sua compra foi processada com sucesso."
+        "title": "Informação atualizada!",
+        "subtitle": "Sua informação foi atualizada com sucesso."
     }
 }
