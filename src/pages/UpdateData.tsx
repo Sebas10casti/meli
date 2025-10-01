@@ -43,6 +43,16 @@ function UpdateDataContent(){
   const currentLang = useMemo(() => i18n.language, [i18n.language]);
 
   /**
+   * Validates required query parameters and redirects to StartTest if missing.
+   */
+  useEffect(() => {
+    if (!referrer || !queryToken) {
+      navigate(`/${currentLang}/start-test`);
+      return;
+    }
+  }, [referrer, queryToken, currentLang, navigate]);
+
+  /**
    * Stores the token from the query parameter if present.
    */
   useEffect(() => {
