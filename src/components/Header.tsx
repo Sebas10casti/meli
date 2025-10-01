@@ -1,5 +1,3 @@
-import LanguageSelector from './LanguageSelector';
-
 const headerStyle = {
   backgroundColor: "#ffe600",
   display: "flex",
@@ -24,7 +22,6 @@ const Header = () => {
           style={logoStyle}
         />
       </a>
-      <LanguageSelector />
     </header>
   );
 }
